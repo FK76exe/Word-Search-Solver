@@ -40,7 +40,8 @@ class Grid:
                                 result = self.recursiveCheck(row+i,col+j,word,1,d)
                                 if False not in result:
                                     # self.printSelected([[row,col]] + result)
-                                    return self.printSelected([[row,col]] + result)
+                                    return [[row,col]] + result
+        print("{} not found".format(word))
         return False
 
     def recursiveCheck(self,row,col,word,I,path):
@@ -55,9 +56,11 @@ class Grid:
             return [[row,col]] + self.recursiveCheck(row+i,col+j,word,I+1,path)
 
     def printSelected(self,matrix):
-        matrixToPrint = []
-        for row in range(len(self.grid)):
-            line = [self.grid[row][col] if [row,col] in matrix else "*" for col in range(len(self.grid[0]))]
-            matrixToPrint.append(line)
-        for line in matrixToPrint:
-            print(*line)
+        if matrix != False:
+            matrixToPrint = []
+            for row in range(len(self.grid)):
+                line = [self.grid[row][col] if [row,col] in matrix else "*" for col in range(len(self.grid[0]))]
+                if line != False:
+                    matrixToPrint.append(line)
+            for line in matrixToPrint:
+                print(*line)
