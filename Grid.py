@@ -25,7 +25,9 @@ class Grid:
         listOfCoords = []
         with open(file) as f:
             for line in f.readlines():
-                listOfCoords += self.findWord(line.strip('\n'))
+                result = self.findWord(line.strip('\n'))
+                if result != False:
+                    listOfCoords += result
         f.close()
         self.printSelected(listOfCoords)
 
